@@ -1,0 +1,15 @@
+*.bak
+# Eclipse
+.project
+.dettings
+.settings
+.checkstyle
+.classpath
+.pmd
+# Maven
+target/
+# Maven release
+pom.xml.next
+pom.xml.releaseBackup
+pom.xml.tag
+release.properties
