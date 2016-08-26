@@ -1,39 +1,22 @@
 package com.shashank.learning.algorithms.linkedlist.singly;
 
 import com.google.common.base.Preconditions;
+import com.shashank.learning.algorithms.linkedlist.api.ListNodeOperations;
+import com.shashank.learning.algorithms.linkedlist.utils.ListNodeUtils;
 
 /**
  * Created by eshmakk on 8/26/2016.
  */
-public class SinglyListNodeOperations
+public class SinglyListNodeOperations extends ListNodeOperations
 {
-    public static int size(SinglyListNode headNode)
-    {
-        int length = 0;
-        if (headNode == null)
-        {
-            return length;
-        }
-
-        SinglyListNode currentNode = headNode;
-        while (currentNode != null)
-        {
-            length++;
-            currentNode = currentNode.getNext();
-        }
-        return length;
-    }
 
     public static SinglyListNode insert(SinglyListNode headNode, SinglyListNode nodeToInsert, int position)
     {
+        ListNodeUtils.initialValidation(headNode, nodeToInsert, position);
         if (headNode == null)
         {
             return nodeToInsert;
         }
-
-        int size = size(headNode);
-
-        Preconditions.checkArgument(!(position < 1 || position > size + 1), "Position Argument should be in between 1 to " + (size + 1));
 
         // Insertion on head
         if (position == 1)

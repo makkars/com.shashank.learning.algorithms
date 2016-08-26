@@ -1,4 +1,6 @@
-package com.shashank.learning.algorithms.linkedlist.singly;
+package com.shashank.learning.algorithms.linkedlist.api;
+
+import com.shashank.learning.algorithms.linkedlist.singly.SinglyListNode;
 
 import java.util.concurrent.atomic.AtomicLong;
 

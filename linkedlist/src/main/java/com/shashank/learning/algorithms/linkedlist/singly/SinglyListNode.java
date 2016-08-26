@@ -1,9 +1,11 @@
 package com.shashank.learning.algorithms.linkedlist.singly;
 
+import com.shashank.learning.algorithms.linkedlist.api.ListNode;
+
 /**
  * Created by eshmakk on 8/26/2016.
  */
-public class SinglyListNode
+public class SinglyListNode implements ListNode
 {
     private long data;
     private SinglyListNode next;
