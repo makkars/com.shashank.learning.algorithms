@@ -8,12 +8,7 @@ public class SinglyListNode
     private long data;
     private SinglyListNode next;
 
-    public SinglyListNode(long data)
-    {
-        this.data = data;
-    }
-
-    public void setData(int data)
+    public void setData(long data)
     {
         this.data = data;
     }

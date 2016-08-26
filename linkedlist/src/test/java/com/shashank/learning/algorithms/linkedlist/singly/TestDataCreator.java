@@ -12,12 +12,14 @@ public class TestDataCreator
     public static SinglyListNode createSinglyListNode(int numberOfNodes)
     {
         long currentUnixEpochTime = getUnixEpochTime();
-        SinglyListNode headNode = new SinglyListNode(currentUnixEpochTime);
+        SinglyListNode headNode = new SinglyListNode();
+        headNode.setData(currentUnixEpochTime);
 
         SinglyListNode currentNode = headNode;
         for (int i = 1; i < numberOfNodes; i++)
         {
-            SinglyListNode newNode = new SinglyListNode(getUnixEpochTime());
+            SinglyListNode newNode = new SinglyListNode();
+            newNode.setData(getUnixEpochTime());
             currentNode.setNext(newNode);
             currentNode = currentNode.getNext();
         }

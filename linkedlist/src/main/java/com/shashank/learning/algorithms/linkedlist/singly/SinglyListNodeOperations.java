@@ -7,7 +7,7 @@ import com.google.common.base.Preconditions;
  */
 public class SinglyListNodeOperations
 {
-    public static int listLength(SinglyListNode headNode)
+    public static int size(SinglyListNode headNode)
     {
         int length = 0;
         if (headNode == null)
@@ -24,17 +24,16 @@ public class SinglyListNodeOperations
         return length;
     }
 
-    public static SinglyListNode insertionOperation(SinglyListNode headNode, SinglyListNode nodeToInsert, int position)
+    public static SinglyListNode insert(SinglyListNode headNode, SinglyListNode nodeToInsert, int position)
     {
         if (headNode == null)
         {
             return nodeToInsert;
         }
 
-        int size = listLength(headNode);
+        int size = size(headNode);
 
-        Preconditions.checkArgument(!(position < 1 || position > size + 1),
-                "Position Argument should be in between 1 to " + (size + 1));
+        Preconditions.checkArgument(!(position < 1 || position > size + 1), "Position Argument should be in between 1 to " + (size + 1));
 
         // Insertion on head
         if (position == 1)
@@ -46,7 +45,7 @@ public class SinglyListNodeOperations
             // Insertion in the middle or in the end
             SinglyListNode previousNode = headNode;
             int count = 1;
-            while (count < position-1)
+            while (count < position - 1)
             {
                 previousNode = previousNode.getNext();
                 count++;
@@ -59,26 +58,73 @@ public class SinglyListNodeOperations
         return headNode;
     }
 
+    /**
+     * @param headNode First Node of Singly Linked List
+     * @param index    API consider first element is at 0 index
+     * @return @{@link SinglyListNode}  Node at index value
+     * @throws IllegalArgumentException <br> 1.) If headNode is null
+     *                                  <br> 2.) If index is valid
+     */
     public static SinglyListNode getNode(SinglyListNode headNode, int index)
     {
         Preconditions.checkArgument(headNode != null, "SinglyListNode can not be null");
 
         SinglyListNode currentNode = headNode;
         int size = 0;
-        while(currentNode != null)
+        while (currentNode != null)
         {
-            if(index == size)
+            if (index == size)
             {
                 break;
-            }
-            else
+            } else
             {
                 currentNode = currentNode.getNext();
             }
             size++;
         }
 
-        Preconditions.checkArgument(currentNode != null, "Index should be less then "+size);
+        Preconditions.checkArgument(currentNode != null, "Index should be less then " + size);
         return currentNode;
+    }
+
+    /**
+     * @param headNode First Node of Singly Linked List
+     * @param position Node Position to be Deleted, First node starts with position:1
+     * @return @{@link SinglyListNode}  newHeadNode after deletion of a node with size: headNode-1
+     * @throws IllegalArgumentException <br> 1.) If headNode is null
+     *                                  <br> 2.) If position is invalid
+     */
+    public static SinglyListNode delete(SinglyListNode headNode, int position)
+    {
+        Preconditions.checkArgument(headNode != null, "HeadNode can not be null");
+
+        SinglyListNode currentNode = headNode;
+        SinglyListNode nextToCurrentNode = headNode.getNext();
+
+        int size = size(headNode);
+        Preconditions.checkArgument(!(position < 1 || position > size + 1), "Position Argument should be in between 1 to " + (size + 1));
+
+        // Deletion on Head
+        if (position == 1)
+        {
+            headNode = nextToCurrentNode;
+            currentNode.setNext(null);
+            return headNode;
+        } else
+        {
+            // Deletion on middle or in the end
+            int count = 1;
+            while (count < position - 1)
+            {
+                currentNode = nextToCurrentNode;
+                nextToCurrentNode = nextToCurrentNode.getNext();
+                count++;
+            }
+
+            SinglyListNode newNextNodePointerForCurrentNode = nextToCurrentNode.getNext();
+            currentNode.setNext(newNextNodePointerForCurrentNode);
+            nextToCurrentNode.setNext(null);
+        }
+        return headNode;
     }
 }
