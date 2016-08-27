@@ -8,6 +8,29 @@ import com.shashank.learning.algorithms.linkedlist.utils.ListNodeUtils;
 public class SinglyListNodeOperations extends ListNodeOperations
 {
 
+    public ListNode insertInLast(ListNode headNode, ListNode nodeToInsert)
+    {
+        Preconditions.checkArgument((headNode != null && nodeToInsert != null), "Input arguments can't be null");
+
+        ListNode currentNode = headNode;
+
+        while (currentNode.getNext() != null)
+        {
+            currentNode = currentNode.getNext();
+        }
+        currentNode.setNext(nodeToInsert);
+
+        return headNode;
+    }
+
+    public ListNode insertOnHead(ListNode headNode, ListNode nodeToInsert)
+    {
+        Preconditions.checkArgument((headNode != null && nodeToInsert != null), "Input arguments can't be null");
+
+        nodeToInsert.setNext(headNode);
+        return nodeToInsert;
+    }
+
     @Override
     public ListNode insert(ListNode headNode, ListNode nodeToInsert, int position)
     {
@@ -22,7 +45,8 @@ public class SinglyListNodeOperations extends ListNodeOperations
         {
             nodeToInsert.setNext(headNode);
             return nodeToInsert;
-        } else
+        }
+        else
         {
             // Insertion in the middle or in the end
             ListNode previousNode = headNode;
@@ -44,6 +68,7 @@ public class SinglyListNodeOperations extends ListNodeOperations
      * @param headNode First Node of Singly Linked List
      * @param position Node Position to be Deleted, First node starts with position:1
      * @return @{@link SinglyListNode}  newHeadNode after deletion of a node with size: headNode-1
+     *
      * @throws IllegalArgumentException <br> 1.) If headNode is null
      *                                  <br> 2.) If position is invalid
      */
@@ -64,7 +89,8 @@ public class SinglyListNodeOperations extends ListNodeOperations
             headNode = nextToCurrentNode;
             currentNode.setNext(null);
             return headNode;
-        } else
+        }
+        else
         {
             // Deletion on middle or in the end
             int count = 1;

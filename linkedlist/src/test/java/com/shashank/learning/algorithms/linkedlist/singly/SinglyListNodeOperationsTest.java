@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class SinglyListNodeOperationsTest
 {
-    private final ListNodeOperations mySinglyNodeOperationsService = new SinglyListNodeOperations();
+    private final SinglyListNodeOperations mySinglyNodeOperationsService = new SinglyListNodeOperations();
 
     @Test
     public void listLength() throws Exception
@@ -49,6 +49,20 @@ public class SinglyListNodeOperationsTest
     }
 
     @Test
+    public void shouldInsertOnHeadSimple()
+    {
+        ListNode tenNodes = TestDataCreator.createSinglyListNode(10);
+
+        ListNode nodeToInsert = TestDataCreator.createSinglyListNode(1);
+        Long expectedResult = nodeToInsert.getData();
+
+        ListNode headNode = mySinglyNodeOperationsService.insertOnHead(tenNodes, nodeToInsert);
+        Long actualResult = headNode.getData();
+
+        Assert.assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
     public void shouldInsertInEnd()
     {
         ListNode tenNodes = TestDataCreator.createSinglyListNode(10);
@@ -59,6 +73,25 @@ public class SinglyListNodeOperationsTest
         int size = SinglyListNodeOperations.size(tenNodes);
         int endPosition = size + 1;
         ListNode headNode = mySinglyNodeOperationsService.insert(tenNodes, nodeToInsert, endPosition);
+
+        int indexOfPosition = size;
+        ListNode endNode = ListNodeOperations.getNode(headNode, indexOfPosition);
+
+        Long actualResult = endNode.getData();
+
+        Assert.assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void shouldInsertInEndSimple()
+    {
+        ListNode tenNodes = TestDataCreator.createSinglyListNode(10);
+
+        ListNode nodeToInsert = TestDataCreator.createSinglyListNode(1);
+        Long expectedResult = nodeToInsert.getData();
+
+        int size = SinglyListNodeOperations.size(tenNodes);
+        ListNode headNode = mySinglyNodeOperationsService.insertInLast(tenNodes, nodeToInsert);
 
         int indexOfPosition = size;
         ListNode endNode = ListNodeOperations.getNode(headNode, indexOfPosition);
@@ -80,7 +113,7 @@ public class SinglyListNodeOperationsTest
         ListNode headNode = mySinglyNodeOperationsService.insert(fiveNodes, nodeToInsert, position);
 
         int indexOfNode = 2;
-        ListNode middleNode =  ListNodeOperations.getNode(headNode, indexOfNode);
+        ListNode middleNode = ListNodeOperations.getNode(headNode, indexOfNode);
 
         Long actualResult = middleNode.getData();
 

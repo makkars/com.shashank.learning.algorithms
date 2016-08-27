@@ -8,6 +8,32 @@ import com.shashank.learning.algorithms.linkedlist.utils.ListNodeUtils;
 public class DoublyListNodeOperations extends ListNodeOperations
 {
 
+    public ListNode insertInLast(ListNode headNode, ListNode nodeToInsert)
+    {
+        Preconditions.checkArgument((headNode != null && nodeToInsert != null), "Input arguments can't be null");
+
+        DoublyListNode currentNode = (DoublyListNode) headNode;
+
+        while (currentNode.getNext() != null)
+        {
+            currentNode = currentNode.getNext();
+        }
+
+        currentNode.setNext(nodeToInsert);
+
+        ((DoublyListNode) nodeToInsert).setPrevious(currentNode);
+        return headNode;
+    }
+
+    public ListNode insertOnHead(ListNode headNode, ListNode nodeToInsert)
+    {
+        Preconditions.checkArgument((headNode != null && nodeToInsert != null), "Input arguments can't be null");
+
+        ((DoublyListNode) nodeToInsert).setNext(headNode);
+        ((DoublyListNode) headNode).setPrevious(nodeToInsert);
+        return nodeToInsert;
+    }
+
     /**
      * @param headNode     ListNode starting node
      * @param nodeToInsert new node to be inserted
