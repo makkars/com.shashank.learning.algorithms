@@ -1,5 +1,6 @@
 package com.shashank.learning.algorithms.linkedlist.singly;
 
+import com.shashank.learning.algorithms.linkedlist.api.ListNodeOperations;
 import com.shashank.learning.algorithms.linkedlist.api.TestDataCreator;
 import org.junit.Assert;
 import org.junit.Test;
@@ -57,7 +58,7 @@ public class SinglyListNodeOperationsTest
         SinglyListNode headNode = SinglyListNodeOperations.insert(tenNodes, nodeToInsert, endPosition);
 
         int indexOfPosition = size;
-        SinglyListNode endNode = SinglyListNodeOperations.getNode(headNode, indexOfPosition);
+        SinglyListNode endNode = (SinglyListNode) ListNodeOperations.getNode(headNode, indexOfPosition);
 
         Long actualResult = endNode.getData();
 
@@ -76,7 +77,7 @@ public class SinglyListNodeOperationsTest
         SinglyListNode headNode = SinglyListNodeOperations.insert(fiveNodes, nodeToInsert, position);
 
         int indexOfNode = 2;
-        SinglyListNode middleNode = SinglyListNodeOperations.getNode(headNode, indexOfNode);
+        SinglyListNode middleNode = (SinglyListNode) ListNodeOperations.getNode(headNode, indexOfNode);
 
         Long actualResult = middleNode.getData();
 
@@ -115,12 +116,12 @@ public class SinglyListNodeOperationsTest
         SinglyListNode tenNodes = TestDataCreator.createSinglyListNode(10);
 
         // Expected Result
-        Long expectedDataResult = SinglyListNodeOperations.getNode(tenNodes, 8).getData();
+        Long expectedDataResult = ListNodeOperations.getNode(tenNodes, 8).getData();
         int expectedListLength = 9;
 
         // Actual Result
         SinglyListNode newHeadNode = SinglyListNodeOperations.delete(tenNodes, 10);
-        Long actualDataResult = SinglyListNodeOperations.getNode(newHeadNode, 8).getData();
+        Long actualDataResult = ListNodeOperations.getNode(newHeadNode, 8).getData();
         int actualListLength = SinglyListNodeOperations.size(newHeadNode);
 
         // Validation
@@ -135,12 +136,12 @@ public class SinglyListNodeOperationsTest
         SinglyListNode tenNodes = TestDataCreator.createSinglyListNode(10);
 
         // Expected Result of node Six (index: 5) After deletion
-        Long expectedDataResult = SinglyListNodeOperations.getNode(tenNodes, 5).getData();
+        Long expectedDataResult = ListNodeOperations.getNode(tenNodes, 5).getData();
         int expectedListLength = 9;
 
         // Actual Result
         SinglyListNode newHeadNode = SinglyListNodeOperations.delete(tenNodes, 5);
-        Long actualDataResult = SinglyListNodeOperations.getNode(newHeadNode, 4).getData();
+        Long actualDataResult = ListNodeOperations.getNode(newHeadNode, 4).getData();
         int actualListLength = SinglyListNodeOperations.size(newHeadNode);
 
         // Validation

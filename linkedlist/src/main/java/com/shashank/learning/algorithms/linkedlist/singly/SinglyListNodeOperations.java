@@ -40,35 +40,6 @@ public class SinglyListNodeOperations extends ListNodeOperations
 
     /**
      * @param headNode First Node of Singly Linked List
-     * @param index    API consider first element is at 0 index
-     * @return @{@link SinglyListNode}  Node at index value
-     * @throws IllegalArgumentException <br> 1.) If headNode is null
-     *                                  <br> 2.) If index is valid
-     */
-    public static SinglyListNode getNode(SinglyListNode headNode, int index)
-    {
-        Preconditions.checkArgument(headNode != null, "SinglyListNode can not be null");
-
-        SinglyListNode currentNode = headNode;
-        int size = 0;
-        while (currentNode != null)
-        {
-            if (index == size)
-            {
-                break;
-            } else
-            {
-                currentNode = currentNode.getNext();
-            }
-            size++;
-        }
-
-        Preconditions.checkArgument(currentNode != null, "Index should be less then " + size);
-        return currentNode;
-    }
-
-    /**
-     * @param headNode First Node of Singly Linked List
      * @param position Node Position to be Deleted, First node starts with position:1
      * @return @{@link SinglyListNode}  newHeadNode after deletion of a node with size: headNode-1
      * @throws IllegalArgumentException <br> 1.) If headNode is null
