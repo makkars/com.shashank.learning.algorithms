@@ -13,7 +13,8 @@ public class DoublyListNodeOperations extends ListNodeOperations
      * @param position     Position at which node to be inserted
      * @return @{@link DoublyListNode} newHeadNode after insertion of node at given position
      */
-    public static ListNode insert(DoublyListNode headNode, DoublyListNode nodeToInsert, int position)
+    @Override
+    public ListNode insert(ListNode headNode, ListNode nodeToInsert, int position)
     {
         ListNodeUtils.initialValidation(headNode, nodeToInsert, position);
 
@@ -22,13 +23,14 @@ public class DoublyListNodeOperations extends ListNodeOperations
             return nodeToInsert;
         }
 
-        DoublyListNode currentNode = headNode;
+        DoublyListNode currentNode = (DoublyListNode) headNode;
+        DoublyListNode downCastedNodeToInsert = (DoublyListNode) nodeToInsert;
 
         // Insertion on Head
         if (position == 1)
         {
-            nodeToInsert.setPrevious(null);
-            nodeToInsert.setNext(currentNode);
+            downCastedNodeToInsert.setPrevious(null);
+            downCastedNodeToInsert.setNext(currentNode);
             currentNode.setPrevious(nodeToInsert);
 
             headNode = nodeToInsert;
@@ -48,17 +50,22 @@ public class DoublyListNodeOperations extends ListNodeOperations
             if (currentNode.getNext() == null)
             {
                 currentNode.setNext(nodeToInsert);
-                nodeToInsert.setPrevious(currentNode);
+                downCastedNodeToInsert.setPrevious(currentNode);
             }
             else
             {
                 // Insertion in the middle
                 DoublyListNode previousNode = currentNode.getPrevious();
                 previousNode.setNext(nodeToInsert);
-                nodeToInsert.setPrevious(previousNode);
-                nodeToInsert.setNext(currentNode);
+                downCastedNodeToInsert.setPrevious(previousNode);
+                downCastedNodeToInsert.setNext(currentNode);
             }
         }
         return headNode;
+    }
+
+    public ListNode delete(ListNode headNode, int position)
+    {
+        return null;
     }
 }

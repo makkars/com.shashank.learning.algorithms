@@ -1,5 +1,6 @@
 package com.shashank.learning.algorithms.linkedlist.singly;
 
+import com.shashank.learning.algorithms.linkedlist.api.ListNode;
 import com.shashank.learning.algorithms.linkedlist.api.ListNodeOperations;
 import com.shashank.learning.algorithms.linkedlist.api.TestDataCreator;
 import org.junit.Assert;
@@ -7,15 +8,17 @@ import org.junit.Test;
 
 public class SinglyListNodeOperationsTest
 {
+    private final ListNodeOperations mySinglyNodeOperationsService = new SinglyListNodeOperations();
+
     @Test
     public void listLength() throws Exception
     {
         SinglyListNode headNode = new SinglyListNode();
         SinglyListNode secondNode = new SinglyListNode();
 
-        headNode.setData(1);
+        headNode.setData(1L);
         headNode.setNext(secondNode);
-        secondNode.setData(2);
+        secondNode.setData(2L);
 
         Integer expectedResult = 2;
         Integer actualResult = SinglyListNodeOperations.size(headNode);
@@ -34,12 +37,12 @@ public class SinglyListNodeOperationsTest
     @Test
     public void shouldInsertOnHead()
     {
-        SinglyListNode tenNodes = TestDataCreator.createSinglyListNode(10);
+        ListNode tenNodes = TestDataCreator.createSinglyListNode(10);
 
-        SinglyListNode nodeToInsert = TestDataCreator.createSinglyListNode(1);
+        ListNode nodeToInsert = TestDataCreator.createSinglyListNode(1);
         Long expectedResult = nodeToInsert.getData();
 
-        SinglyListNode headNode = SinglyListNodeOperations.insert(tenNodes, nodeToInsert, 1);
+        ListNode headNode = mySinglyNodeOperationsService.insert(tenNodes, nodeToInsert, 1);
         Long actualResult = headNode.getData();
 
         Assert.assertEquals(expectedResult, actualResult);
@@ -48,17 +51,17 @@ public class SinglyListNodeOperationsTest
     @Test
     public void shouldInsertInEnd()
     {
-        SinglyListNode tenNodes = TestDataCreator.createSinglyListNode(10);
+        ListNode tenNodes = TestDataCreator.createSinglyListNode(10);
 
-        SinglyListNode nodeToInsert = TestDataCreator.createSinglyListNode(1);
+        ListNode nodeToInsert = TestDataCreator.createSinglyListNode(1);
         Long expectedResult = nodeToInsert.getData();
 
         int size = SinglyListNodeOperations.size(tenNodes);
         int endPosition = size + 1;
-        SinglyListNode headNode = SinglyListNodeOperations.insert(tenNodes, nodeToInsert, endPosition);
+        ListNode headNode = mySinglyNodeOperationsService.insert(tenNodes, nodeToInsert, endPosition);
 
         int indexOfPosition = size;
-        SinglyListNode endNode = (SinglyListNode) ListNodeOperations.getNode(headNode, indexOfPosition);
+        ListNode endNode = ListNodeOperations.getNode(headNode, indexOfPosition);
 
         Long actualResult = endNode.getData();
 
@@ -68,16 +71,16 @@ public class SinglyListNodeOperationsTest
     @Test
     public void shouldInsertAtPositionValue()
     {
-        SinglyListNode fiveNodes = TestDataCreator.createSinglyListNode(5);
+        ListNode fiveNodes = TestDataCreator.createSinglyListNode(5);
 
-        SinglyListNode nodeToInsert = TestDataCreator.createSinglyListNode(1);
+        ListNode nodeToInsert = TestDataCreator.createSinglyListNode(1);
         Long expectedResult = nodeToInsert.getData();
 
         int position = 3;
-        SinglyListNode headNode = SinglyListNodeOperations.insert(fiveNodes, nodeToInsert, position);
+        ListNode headNode = mySinglyNodeOperationsService.insert(fiveNodes, nodeToInsert, position);
 
         int indexOfNode = 2;
-        SinglyListNode middleNode = (SinglyListNode) ListNodeOperations.getNode(headNode, indexOfNode);
+        ListNode middleNode =  ListNodeOperations.getNode(headNode, indexOfNode);
 
         Long actualResult = middleNode.getData();
 
@@ -87,23 +90,23 @@ public class SinglyListNodeOperationsTest
     @Test(expected = IllegalArgumentException.class)
     public void shouldReturnExceptionWithPositionErrorOnInsertionOperation()
     {
-        SinglyListNode fiveNodes = TestDataCreator.createSinglyListNode(5);
-        SinglyListNode nodeToInsert = TestDataCreator.createSinglyListNode(1);
+        ListNode fiveNodes = TestDataCreator.createSinglyListNode(5);
+        ListNode nodeToInsert = TestDataCreator.createSinglyListNode(1);
 
         int position = 30;
-        SinglyListNodeOperations.insert(fiveNodes, nodeToInsert, position);
+        mySinglyNodeOperationsService.insert(fiveNodes, nodeToInsert, position);
     }
 
     @Test
     public void shouldDeleteOnHead()
     {
-        SinglyListNode fiveNodes = TestDataCreator.createSinglyListNode(5);
+        ListNode fiveNodes = TestDataCreator.createSinglyListNode(5);
         Long expectedDataResult = fiveNodes.getNext().getData();
         int expectedListLength = 4;
 
-        SinglyListNode newHeadNode = SinglyListNodeOperations.delete(fiveNodes, 1);
+        ListNode newHeadNode = mySinglyNodeOperationsService.delete(fiveNodes, 1);
         Long actualDataResult = newHeadNode.getData();
-        int actualListLength = SinglyListNodeOperations.size(newHeadNode);
+        int actualListLength = ListNodeOperations.size(newHeadNode);
 
         Assert.assertEquals(expectedDataResult, actualDataResult);
         Assert.assertEquals(expectedListLength, actualListLength);
@@ -113,16 +116,16 @@ public class SinglyListNodeOperationsTest
     public void shouldDeleteEndNode()
     {
         // Given Data
-        SinglyListNode tenNodes = TestDataCreator.createSinglyListNode(10);
+        ListNode tenNodes = TestDataCreator.createSinglyListNode(10);
 
         // Expected Result
         Long expectedDataResult = ListNodeOperations.getNode(tenNodes, 8).getData();
         int expectedListLength = 9;
 
         // Actual Result
-        SinglyListNode newHeadNode = SinglyListNodeOperations.delete(tenNodes, 10);
+        ListNode newHeadNode = mySinglyNodeOperationsService.delete(tenNodes, 10);
         Long actualDataResult = ListNodeOperations.getNode(newHeadNode, 8).getData();
-        int actualListLength = SinglyListNodeOperations.size(newHeadNode);
+        int actualListLength = ListNodeOperations.size(newHeadNode);
 
         // Validation
         Assert.assertEquals(expectedDataResult, actualDataResult);
@@ -133,16 +136,16 @@ public class SinglyListNodeOperationsTest
     public void shouldDeleteMiddleNode()
     {
         // Given Data
-        SinglyListNode tenNodes = TestDataCreator.createSinglyListNode(10);
+        ListNode tenNodes = TestDataCreator.createSinglyListNode(10);
 
         // Expected Result of node Six (index: 5) After deletion
         Long expectedDataResult = ListNodeOperations.getNode(tenNodes, 5).getData();
         int expectedListLength = 9;
 
         // Actual Result
-        SinglyListNode newHeadNode = SinglyListNodeOperations.delete(tenNodes, 5);
+        ListNode newHeadNode = mySinglyNodeOperationsService.delete(tenNodes, 5);
         Long actualDataResult = ListNodeOperations.getNode(newHeadNode, 4).getData();
-        int actualListLength = SinglyListNodeOperations.size(newHeadNode);
+        int actualListLength = ListNodeOperations.size(newHeadNode);
 
         // Validation
         Assert.assertEquals(expectedDataResult, actualDataResult);
@@ -152,9 +155,9 @@ public class SinglyListNodeOperationsTest
     @Test(expected = IllegalArgumentException.class)
     public void shouldReturnExceptionWithPositionErrorOnDeletionOperation()
     {
-        SinglyListNode fiveNodes = TestDataCreator.createSinglyListNode(5);
+        ListNode fiveNodes = TestDataCreator.createSinglyListNode(5);
 
         int position = 30;
-        SinglyListNodeOperations.delete(fiveNodes, position);
+        mySinglyNodeOperationsService.delete(fiveNodes, position);
     }
 }

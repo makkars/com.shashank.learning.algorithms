@@ -5,14 +5,14 @@ import com.shashank.learning.algorithms.linkedlist.api.ListNode;
 public class SinglyListNode implements ListNode
 {
     private long data;
-    private SinglyListNode next;
+    private ListNode next;
 
-    public void setData(long data)
+    public void setData(Long data)
     {
         this.data = data;
     }
 
-    public void setNext(SinglyListNode next)
+    public void setNext(ListNode next)
     {
         this.next = next;
     }
@@ -22,7 +22,7 @@ public class SinglyListNode implements ListNode
         return data;
     }
 
-    public SinglyListNode getNext()
+    public ListNode getNext()
     {
         return next;
     }

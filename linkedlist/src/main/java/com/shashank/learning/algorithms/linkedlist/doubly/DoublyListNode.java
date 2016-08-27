@@ -13,7 +13,7 @@ public class DoublyListNode implements ListNode
         return data;
     }
 
-    public void setData(long data)
+    public void setData(Long data)
     {
         this.data = data;
     }
@@ -23,9 +23,9 @@ public class DoublyListNode implements ListNode
         return previous;
     }
 
-    public void setPrevious(DoublyListNode previous)
+    public void setPrevious(ListNode previous)
     {
-        this.previous = previous;
+        this.previous = (DoublyListNode) previous;
     }
 
     public DoublyListNode getNext()
@@ -33,8 +33,8 @@ public class DoublyListNode implements ListNode
         return next;
     }
 
-    public void setNext(DoublyListNode next)
+    public void setNext(ListNode next)
     {
-        this.next = next;
+        this.next = (DoublyListNode) next;
     }
 }

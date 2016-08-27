@@ -1,24 +1,24 @@
 package com.shashank.learning.algorithms.linkedlist.doubly;
 
+import com.shashank.learning.algorithms.linkedlist.api.ListNode;
 import com.shashank.learning.algorithms.linkedlist.api.ListNodeOperations;
 import com.shashank.learning.algorithms.linkedlist.api.TestDataCreator;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 public class DoublyListNodeOperationsTest
 {
+    private final ListNodeOperations myDoublyNodeOperationsService = new DoublyListNodeOperations();
 
     @Test
     public void shouldInsertOnHead()
     {
-        DoublyListNode tenNodes = TestDataCreator.createDoublyListNode(10);
+        ListNode tenNodes = TestDataCreator.createDoublyListNode(10);
 
-        DoublyListNode nodeToInsert = TestDataCreator.createDoublyListNode(1);
+        ListNode nodeToInsert = TestDataCreator.createDoublyListNode(1);
         Long expectedResult = nodeToInsert.getData();
 
-        DoublyListNode headNode = (DoublyListNode) DoublyListNodeOperations.insert(tenNodes, nodeToInsert, 1);
+        ListNode headNode = (DoublyListNode) myDoublyNodeOperationsService.insert(tenNodes, nodeToInsert, 1);
         Long actualResult = headNode.getData();
 
         Assert.assertEquals(expectedResult, actualResult);
@@ -27,12 +27,12 @@ public class DoublyListNodeOperationsTest
     @Test
     public void shouldInsertInTheEnd()
     {
-        DoublyListNode fiveNodes = TestDataCreator.createDoublyListNode(5);
+        ListNode fiveNodes = TestDataCreator.createDoublyListNode(5);
 
-        DoublyListNode nodeToInsert = TestDataCreator.createDoublyListNode(1);
+        ListNode nodeToInsert = TestDataCreator.createDoublyListNode(1);
         Long expectedResult = nodeToInsert.getData();
 
-        DoublyListNode headNode = (DoublyListNode) DoublyListNodeOperations.insert(fiveNodes, nodeToInsert, 5);
+        ListNode headNode = (DoublyListNode) myDoublyNodeOperationsService.insert(fiveNodes, nodeToInsert, 5);
         Long actualResult = ListNodeOperations.getNode(headNode, 5).getData();
 
         Assert.assertEquals(expectedResult, actualResult);
@@ -41,12 +41,12 @@ public class DoublyListNodeOperationsTest
     @Test
     public void shouldInsertInTheMiddle()
     {
-        DoublyListNode fiveNodes = TestDataCreator.createDoublyListNode(5);
+        ListNode fiveNodes = TestDataCreator.createDoublyListNode(5);
 
-        DoublyListNode nodeToInsert = TestDataCreator.createDoublyListNode(1);
+        ListNode nodeToInsert = TestDataCreator.createDoublyListNode(1);
         Long expectedResult = nodeToInsert.getData();
 
-        DoublyListNode headNode = (DoublyListNode) DoublyListNodeOperations.insert(fiveNodes, nodeToInsert, 3);
+        ListNode headNode = myDoublyNodeOperationsService.insert(fiveNodes, nodeToInsert, 3);
         Long actualResult = ListNodeOperations.getNode(headNode, 2).getData();
 
         Assert.assertEquals(expectedResult, actualResult);

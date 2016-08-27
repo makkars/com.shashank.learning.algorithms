@@ -9,13 +9,13 @@ public class TestDataCreator
 {
     private static final AtomicLong LAST_TIME_MS = new AtomicLong();
 
-    public static SinglyListNode createSinglyListNode(int numberOfNodes)
+    public static ListNode createSinglyListNode(int numberOfNodes)
     {
         long currentUnixEpochTime = getUnixEpochTime();
-        SinglyListNode headNode = new SinglyListNode();
+        ListNode headNode = new SinglyListNode();
         headNode.setData(currentUnixEpochTime);
 
-        SinglyListNode currentNode = headNode;
+        ListNode currentNode = headNode;
         for (int i = 1; i < numberOfNodes; i++)
         {
             SinglyListNode newNode = new SinglyListNode();
