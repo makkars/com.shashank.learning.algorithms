@@ -2,9 +2,6 @@ package com.shashank.learning.algorithms.linkedlist.doubly;
 
 import com.shashank.learning.algorithms.linkedlist.api.ListNode;
 
-/**
- * Created by eshmakk on 8/27/2016.
- */
 public class DoublyListNode implements ListNode
 {
     private long data;

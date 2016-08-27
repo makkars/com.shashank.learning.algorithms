@@ -4,9 +4,6 @@ import com.shashank.learning.algorithms.linkedlist.singly.SinglyListNode;
 
 import java.util.concurrent.atomic.AtomicLong;
 
-/**
- * Created by eshmakk on 8/26/2016.
- */
 public class TestDataCreator
 {
     private static final AtomicLong LAST_TIME_MS = new AtomicLong();

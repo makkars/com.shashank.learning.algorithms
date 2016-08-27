@@ -4,9 +4,6 @@ import com.google.common.base.Preconditions;
 import com.shashank.learning.algorithms.linkedlist.api.ListNode;
 import com.shashank.learning.algorithms.linkedlist.api.ListNodeOperations;
 
-/**
- * Created by eshmakk on 8/27/2016.
- */
 public class ListNodeUtils
 {
     public static void initialValidation(ListNode headNode, ListNode nodeToInsert, int position)

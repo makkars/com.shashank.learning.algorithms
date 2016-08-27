@@ -4,9 +4,6 @@ import com.shashank.learning.algorithms.linkedlist.api.TestDataCreator;
 import org.junit.Assert;
 import org.junit.Test;
 
-/**
- * Created by eshmakk on 8/26/2016.
- */
 public class SinglyListNodeOperationsTest
 {
     @Test

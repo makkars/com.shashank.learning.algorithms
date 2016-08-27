@@ -4,9 +4,6 @@ import com.google.common.base.Preconditions;
 import com.shashank.learning.algorithms.linkedlist.api.ListNodeOperations;
 import com.shashank.learning.algorithms.linkedlist.utils.ListNodeUtils;
 
-/**
- * Created by eshmakk on 8/26/2016.
- */
 public class SinglyListNodeOperations extends ListNodeOperations
 {
 
