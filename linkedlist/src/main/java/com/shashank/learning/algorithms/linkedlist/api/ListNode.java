@@ -2,11 +2,11 @@ package com.shashank.learning.algorithms.linkedlist.api;
 
 public interface ListNode
 {
-    void setData(Long data);
-
     long getData();
 
-    void setNext(ListNode listNode);
+    void setData(Long data);
 
     ListNode getNext();
+
+    void setNext(ListNode listNode);
 }

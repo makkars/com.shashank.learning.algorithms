@@ -1,5 +1,6 @@
 package com.shashank.learning.algorithms.linkedlist.doubly;
 
+import com.google.common.base.Preconditions;
 import com.shashank.learning.algorithms.linkedlist.api.ListNode;
 import com.shashank.learning.algorithms.linkedlist.api.ListNodeOperations;
 import com.shashank.learning.algorithms.linkedlist.utils.ListNodeUtils;
@@ -64,8 +65,47 @@ public class DoublyListNodeOperations extends ListNodeOperations
         return headNode;
     }
 
+    @Override
     public ListNode delete(ListNode headNode, int position)
     {
-        return null;
+        Preconditions.checkArgument(headNode != null, "HeadNode should not be null for delete operation");
+
+        if (position == 1)
+        {
+            DoublyListNode newHeadNode = (DoublyListNode) headNode.getNext();
+            newHeadNode.setPrevious(null);
+            headNode = null;
+            return newHeadNode;
+        }
+        else
+        {
+            DoublyListNode currentNode = (DoublyListNode) headNode;
+            int count = 1;
+
+            while (count < position)
+            {
+                currentNode = currentNode.getNext();
+                count++;
+            }
+
+            if (currentNode.getNext() == null)
+            {
+                currentNode.getPrevious().setNext(null);
+                currentNode = null;
+            }
+            else
+            {
+                DoublyListNode previousNode = currentNode.getPrevious();
+                DoublyListNode nextToCurrentNode = currentNode.getNext();
+
+                previousNode.setNext(nextToCurrentNode);
+                nextToCurrentNode.setPrevious(previousNode);
+
+                currentNode.setPrevious(null);
+                currentNode.setNext(null);
+                currentNode = null;
+            }
+        }
+        return headNode;
     }
 }

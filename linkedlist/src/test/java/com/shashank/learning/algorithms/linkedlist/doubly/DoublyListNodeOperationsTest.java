@@ -51,4 +51,43 @@ public class DoublyListNodeOperationsTest
 
         Assert.assertEquals(expectedResult, actualResult);
     }
+
+    @Test
+    public void shouldDeleteOnHead()
+    {
+        ListNode tenNodes = TestDataCreator.createDoublyListNode(10);
+
+        Long expectedResult = tenNodes.getNext().getData();
+
+        ListNode headNode =  myDoublyNodeOperationsService.delete(tenNodes, 1);
+        Long actualResult = headNode.getData();
+
+        Assert.assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void shouldDeleteEndNode()
+    {
+        ListNode fiveNodes = TestDataCreator.createDoublyListNode(5);
+
+        Long expectedResult = ListNodeOperations.getNode(fiveNodes, 3).getData();
+
+        ListNode headNode =  myDoublyNodeOperationsService.delete(fiveNodes, 5);
+        Long actualResult = ListNodeOperations.getNode(headNode, 3).getData();
+
+        Assert.assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void shouldDeleteInTheMiddle()
+    {
+        ListNode fiveNodes = TestDataCreator.createDoublyListNode(5);
+
+        Long expectedResult = ListNodeOperations.getNode(fiveNodes, 3).getData();
+
+        ListNode headNode = myDoublyNodeOperationsService.delete(fiveNodes, 3);
+        Long actualResult = ListNodeOperations.getNode(headNode, 2).getData();
+
+        Assert.assertEquals(expectedResult, actualResult);
+    }
 }
