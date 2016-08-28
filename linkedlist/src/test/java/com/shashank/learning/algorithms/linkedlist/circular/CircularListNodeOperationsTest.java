@@ -36,7 +36,7 @@ public class CircularListNodeOperationsTest
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void shoultFailAsIndexOutOfRange()
+    public void shouldFailAsIndexOutOfRange()
     {
         int numberOfNodes = 5;
         CircularListNode headNode = TestDataCreator.createCircularListNode(numberOfNodes);
@@ -44,5 +44,4 @@ public class CircularListNodeOperationsTest
         int nodeIndex = 5;
         myCircularListNodeOperations.getNode(headNode, nodeIndex).getData();
     }
-
 }

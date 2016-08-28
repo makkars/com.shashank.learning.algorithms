@@ -6,7 +6,7 @@ public abstract class ListNodeOperations
 {
     public void initialValidation(ListNode headNode, ListNode nodeToInsert, int position)
     {
-        Preconditions.checkArgument(!(nodeToInsert != null && headNode != null), "Input headNode/nodeToInsert can't be null");
+        Preconditions.checkArgument(!(nodeToInsert == null || headNode == null), "Input headNode/nodeToInsert can't be null");
         int size = size(headNode);
         Preconditions.checkArgument(!(position < 1 || position > size + 1), "Position Argument should be in between 1 to " + (size + 1));
     }

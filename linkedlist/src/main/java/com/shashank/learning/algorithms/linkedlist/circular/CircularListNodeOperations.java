@@ -31,12 +31,12 @@ public class CircularListNodeOperations extends ListNodeOperations
         ListNode currentNode = headNode;
         while (currentNode.getNext() != headNode)
         {
-            ++count;
             if (count == index)
             {
                 break;
             }
             currentNode = currentNode.getNext();
+            ++count;
         }
 
         // When currentNode.getNext() != headNode , it meant you have found what you are looking.
