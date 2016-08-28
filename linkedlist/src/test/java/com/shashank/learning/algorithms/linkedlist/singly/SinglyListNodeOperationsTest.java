@@ -42,7 +42,7 @@ public class SinglyListNodeOperationsTest
         ListNode nodeToInsert = TestDataCreator.createSinglyListNode(1);
         Long expectedResult = nodeToInsert.getData();
 
-        ListNode headNode = mySinglyNodeOperationsService.insert(tenNodes, nodeToInsert, 1);
+        ListNode headNode = mySinglyNodeOperationsService.insertAtPosition(tenNodes, nodeToInsert, 1);
         Long actualResult = headNode.getData();
 
         Assert.assertEquals(expectedResult, actualResult);
@@ -72,7 +72,7 @@ public class SinglyListNodeOperationsTest
 
         int size = SinglyListNodeOperations.size(tenNodes);
         int endPosition = size + 1;
-        ListNode headNode = mySinglyNodeOperationsService.insert(tenNodes, nodeToInsert, endPosition);
+        ListNode headNode = mySinglyNodeOperationsService.insertAtPosition(tenNodes, nodeToInsert, endPosition);
 
         int indexOfPosition = size;
         ListNode endNode = ListNodeOperations.getNode(headNode, indexOfPosition);
@@ -110,7 +110,7 @@ public class SinglyListNodeOperationsTest
         Long expectedResult = nodeToInsert.getData();
 
         int position = 3;
-        ListNode headNode = mySinglyNodeOperationsService.insert(fiveNodes, nodeToInsert, position);
+        ListNode headNode = mySinglyNodeOperationsService.insertAtPosition(fiveNodes, nodeToInsert, position);
 
         int indexOfNode = 2;
         ListNode middleNode = ListNodeOperations.getNode(headNode, indexOfNode);
@@ -127,7 +127,7 @@ public class SinglyListNodeOperationsTest
         ListNode nodeToInsert = TestDataCreator.createSinglyListNode(1);
 
         int position = 30;
-        mySinglyNodeOperationsService.insert(fiveNodes, nodeToInsert, position);
+        mySinglyNodeOperationsService.insertAtPosition(fiveNodes, nodeToInsert, position);
     }
 
     @Test
@@ -137,7 +137,22 @@ public class SinglyListNodeOperationsTest
         Long expectedDataResult = fiveNodes.getNext().getData();
         int expectedListLength = 4;
 
-        ListNode newHeadNode = mySinglyNodeOperationsService.delete(fiveNodes, 1);
+        ListNode newHeadNode = mySinglyNodeOperationsService.deleteOnPosition(fiveNodes, 1);
+        Long actualDataResult = newHeadNode.getData();
+        int actualListLength = ListNodeOperations.size(newHeadNode);
+
+        Assert.assertEquals(expectedDataResult, actualDataResult);
+        Assert.assertEquals(expectedListLength, actualListLength);
+    }
+
+    @Test
+    public void shouldDeleteHead()
+    {
+        ListNode fiveNodes = TestDataCreator.createSinglyListNode(5);
+        Long expectedDataResult = fiveNodes.getNext().getData();
+        int expectedListLength = 4;
+
+        ListNode newHeadNode = mySinglyNodeOperationsService.deleteHeadNode(fiveNodes);
         Long actualDataResult = newHeadNode.getData();
         int actualListLength = ListNodeOperations.size(newHeadNode);
 
@@ -156,7 +171,27 @@ public class SinglyListNodeOperationsTest
         int expectedListLength = 9;
 
         // Actual Result
-        ListNode newHeadNode = mySinglyNodeOperationsService.delete(tenNodes, 10);
+        ListNode newHeadNode = mySinglyNodeOperationsService.deleteOnPosition(tenNodes, 10);
+        Long actualDataResult = ListNodeOperations.getNode(newHeadNode, 8).getData();
+        int actualListLength = ListNodeOperations.size(newHeadNode);
+
+        // Validation
+        Assert.assertEquals(expectedDataResult, actualDataResult);
+        Assert.assertEquals(expectedListLength, actualListLength);
+    }
+
+    @Test
+    public void shouldDeleteEndNodeSimple()
+    {
+        // Given Data
+        ListNode tenNodes = TestDataCreator.createSinglyListNode(10);
+
+        // Expected Result
+        Long expectedDataResult = ListNodeOperations.getNode(tenNodes, 8).getData();
+        int expectedListLength = 9;
+
+        // Actual Result
+        ListNode newHeadNode = mySinglyNodeOperationsService.deleteEndNode(tenNodes);
         Long actualDataResult = ListNodeOperations.getNode(newHeadNode, 8).getData();
         int actualListLength = ListNodeOperations.size(newHeadNode);
 
@@ -176,7 +211,7 @@ public class SinglyListNodeOperationsTest
         int expectedListLength = 9;
 
         // Actual Result
-        ListNode newHeadNode = mySinglyNodeOperationsService.delete(tenNodes, 5);
+        ListNode newHeadNode = mySinglyNodeOperationsService.deleteOnPosition(tenNodes, 5);
         Long actualDataResult = ListNodeOperations.getNode(newHeadNode, 4).getData();
         int actualListLength = ListNodeOperations.size(newHeadNode);
 
@@ -191,6 +226,6 @@ public class SinglyListNodeOperationsTest
         ListNode fiveNodes = TestDataCreator.createSinglyListNode(5);
 
         int position = 30;
-        mySinglyNodeOperationsService.delete(fiveNodes, position);
+        mySinglyNodeOperationsService.deleteOnPosition(fiveNodes, position);
     }
 }

@@ -8,6 +8,7 @@ import com.shashank.learning.algorithms.linkedlist.utils.ListNodeUtils;
 public class SinglyListNodeOperations extends ListNodeOperations
 {
 
+    @Override
     public ListNode insertInLast(ListNode headNode, ListNode nodeToInsert)
     {
         Preconditions.checkArgument((headNode != null && nodeToInsert != null), "Input arguments can't be null");
@@ -23,6 +24,7 @@ public class SinglyListNodeOperations extends ListNodeOperations
         return headNode;
     }
 
+    @Override
     public ListNode insertOnHead(ListNode headNode, ListNode nodeToInsert)
     {
         Preconditions.checkArgument((headNode != null && nodeToInsert != null), "Input arguments can't be null");
@@ -31,8 +33,7 @@ public class SinglyListNodeOperations extends ListNodeOperations
         return nodeToInsert;
     }
 
-    @Override
-    public ListNode insert(ListNode headNode, ListNode nodeToInsert, int position)
+    public ListNode insertAtPosition(ListNode headNode, ListNode nodeToInsert, int position)
     {
         ListNodeUtils.initialValidation(headNode, nodeToInsert, position);
         if (headNode == null)
@@ -72,8 +73,7 @@ public class SinglyListNodeOperations extends ListNodeOperations
      * @throws IllegalArgumentException <br> 1.) If headNode is null
      *                                  <br> 2.) If position is invalid
      */
-    @Override
-    public ListNode delete(ListNode headNode, int position)
+    public ListNode deleteOnPosition(ListNode headNode, int position)
     {
         Preconditions.checkArgument(headNode != null, "HeadNode can not be null");
 
@@ -105,6 +105,37 @@ public class SinglyListNodeOperations extends ListNodeOperations
             currentNode.setNext(newNextNodePointerForCurrentNode);
             nextToCurrentNode.setNext(null);
         }
+        return headNode;
+    }
+
+    @Override
+    public ListNode deleteHeadNode(ListNode headNode)
+    {
+        Preconditions.checkArgument(headNode != null, "HeadNode can not be null");
+
+        ListNode newHeadNode = headNode.getNext();
+
+        headNode.setNext(null);
+        headNode = null;
+
+        return newHeadNode;
+    }
+
+    @Override
+    public ListNode deleteEndNode(ListNode headNode)
+    {
+        Preconditions.checkArgument(headNode != null, "HeadNode can not be null");
+
+        ListNode previousNode = headNode;
+        ListNode currentNode = previousNode.getNext();
+
+        while (currentNode.getNext() != null)
+        {
+            currentNode = currentNode.getNext();
+            previousNode = previousNode.getNext();
+        }
+
+        previousNode.setNext(null);
         return headNode;
     }
 }

@@ -8,6 +8,7 @@ import com.shashank.learning.algorithms.linkedlist.utils.ListNodeUtils;
 public class DoublyListNodeOperations extends ListNodeOperations
 {
 
+    @Override
     public ListNode insertInLast(ListNode headNode, ListNode nodeToInsert)
     {
         Preconditions.checkArgument((headNode != null && nodeToInsert != null), "Input arguments can't be null");
@@ -25,6 +26,7 @@ public class DoublyListNodeOperations extends ListNodeOperations
         return headNode;
     }
 
+    @Override
     public ListNode insertOnHead(ListNode headNode, ListNode nodeToInsert)
     {
         Preconditions.checkArgument((headNode != null && nodeToInsert != null), "Input arguments can't be null");
@@ -40,8 +42,7 @@ public class DoublyListNodeOperations extends ListNodeOperations
      * @param position     Position at which node to be inserted
      * @return @{@link DoublyListNode} newHeadNode after insertion of node at given position
      */
-    @Override
-    public ListNode insert(ListNode headNode, ListNode nodeToInsert, int position)
+    public ListNode insertAtPosition(ListNode headNode, ListNode nodeToInsert, int position)
     {
         ListNodeUtils.initialValidation(headNode, nodeToInsert, position);
 
@@ -91,8 +92,7 @@ public class DoublyListNodeOperations extends ListNodeOperations
         return headNode;
     }
 
-    @Override
-    public ListNode delete(ListNode headNode, int position)
+    public ListNode deleteOnPosition(ListNode headNode, int position)
     {
         Preconditions.checkArgument(headNode != null, "HeadNode should not be null for delete operation");
 
@@ -132,6 +132,39 @@ public class DoublyListNodeOperations extends ListNodeOperations
                 currentNode = null;
             }
         }
+        return headNode;
+    }
+
+    @Override
+    public ListNode deleteHeadNode(ListNode headNode)
+    {
+        Preconditions.checkArgument(headNode != null, "HeadNode should not be null for delete operation");
+
+        DoublyListNode nextHeadNode = (DoublyListNode) headNode.getNext();
+        nextHeadNode.setPrevious(null);
+
+        headNode.setNext(null);
+        headNode = null;
+        return nextHeadNode;
+
+    }
+
+    @Override
+    public ListNode deleteEndNode(ListNode headNode)
+    {
+        Preconditions.checkArgument(headNode != null, "HeadNode should not be null for delete operation");
+
+        DoublyListNode currentNode = (DoublyListNode) headNode;
+
+        while (currentNode.getNext() != null)
+        {
+            currentNode = currentNode.getNext();
+        }
+
+        currentNode.getPrevious().setNext(null);
+        currentNode.setPrevious(null);
+        currentNode = null;
+
         return headNode;
     }
 }

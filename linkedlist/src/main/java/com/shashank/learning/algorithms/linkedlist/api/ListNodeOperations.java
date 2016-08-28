@@ -52,7 +52,11 @@ public abstract class ListNodeOperations
         return currentNode;
     }
 
-    public abstract ListNode insert(ListNode headNode, ListNode nodeToInsert, int position);
+    public abstract ListNode insertOnHead(ListNode headNode, ListNode nodeToInsert);
 
-    public abstract ListNode delete(ListNode headNode, int position);
+    public abstract ListNode insertInLast(ListNode headNode, ListNode nodeToInsert);
+
+    public abstract ListNode deleteHeadNode(ListNode headNode);
+
+    public abstract ListNode deleteEndNode(ListNode headNode);
 }

@@ -18,7 +18,7 @@ public class DoublyListNodeOperationsTest
         ListNode nodeToInsert = TestDataCreator.createDoublyListNode(1);
         Long expectedResult = nodeToInsert.getData();
 
-        ListNode headNode = myDoublyNodeOperationsService.insert(tenNodes, nodeToInsert, 1);
+        ListNode headNode = myDoublyNodeOperationsService.insertAtPosition(tenNodes, nodeToInsert, 1);
         Long actualResult = headNode.getData();
 
         Assert.assertEquals(expectedResult, actualResult);
@@ -46,7 +46,7 @@ public class DoublyListNodeOperationsTest
         ListNode nodeToInsert = TestDataCreator.createDoublyListNode(1);
         Long expectedResult = nodeToInsert.getData();
 
-        ListNode headNode = myDoublyNodeOperationsService.insert(fiveNodes, nodeToInsert, 5);
+        ListNode headNode = myDoublyNodeOperationsService.insertAtPosition(fiveNodes, nodeToInsert, 5);
         Long actualResult = ListNodeOperations.getNode(headNode, 5).getData();
 
         Assert.assertEquals(expectedResult, actualResult);
@@ -74,7 +74,7 @@ public class DoublyListNodeOperationsTest
         ListNode nodeToInsert = TestDataCreator.createDoublyListNode(1);
         Long expectedResult = nodeToInsert.getData();
 
-        ListNode headNode = myDoublyNodeOperationsService.insert(fiveNodes, nodeToInsert, 3);
+        ListNode headNode = myDoublyNodeOperationsService.insertAtPosition(fiveNodes, nodeToInsert, 3);
         Long actualResult = ListNodeOperations.getNode(headNode, 2).getData();
 
         Assert.assertEquals(expectedResult, actualResult);
@@ -87,7 +87,20 @@ public class DoublyListNodeOperationsTest
 
         Long expectedResult = tenNodes.getNext().getData();
 
-        ListNode headNode = myDoublyNodeOperationsService.delete(tenNodes, 1);
+        ListNode headNode = myDoublyNodeOperationsService.deleteOnPosition(tenNodes, 1);
+        Long actualResult = headNode.getData();
+
+        Assert.assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void shouldDeleteHead()
+    {
+        ListNode tenNodes = TestDataCreator.createDoublyListNode(10);
+
+        Long expectedResult = tenNodes.getNext().getData();
+
+        ListNode headNode = myDoublyNodeOperationsService.deleteHeadNode(tenNodes);
         Long actualResult = headNode.getData();
 
         Assert.assertEquals(expectedResult, actualResult);
@@ -100,7 +113,20 @@ public class DoublyListNodeOperationsTest
 
         Long expectedResult = ListNodeOperations.getNode(fiveNodes, 3).getData();
 
-        ListNode headNode = myDoublyNodeOperationsService.delete(fiveNodes, 5);
+        ListNode headNode = myDoublyNodeOperationsService.deleteOnPosition(fiveNodes, 5);
+        Long actualResult = ListNodeOperations.getNode(headNode, 3).getData();
+
+        Assert.assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    public void shouldDeleteEndNodeSimple()
+    {
+        ListNode fiveNodes = TestDataCreator.createDoublyListNode(5);
+
+        Long expectedResult = ListNodeOperations.getNode(fiveNodes, 3).getData();
+
+        ListNode headNode = myDoublyNodeOperationsService.deleteEndNode(fiveNodes);
         Long actualResult = ListNodeOperations.getNode(headNode, 3).getData();
 
         Assert.assertEquals(expectedResult, actualResult);
@@ -113,7 +139,7 @@ public class DoublyListNodeOperationsTest
 
         Long expectedResult = ListNodeOperations.getNode(fiveNodes, 3).getData();
 
-        ListNode headNode = myDoublyNodeOperationsService.delete(fiveNodes, 3);
+        ListNode headNode = myDoublyNodeOperationsService.deleteOnPosition(fiveNodes, 3);
         Long actualResult = ListNodeOperations.getNode(headNode, 2).getData();
 
         Assert.assertEquals(expectedResult, actualResult);
