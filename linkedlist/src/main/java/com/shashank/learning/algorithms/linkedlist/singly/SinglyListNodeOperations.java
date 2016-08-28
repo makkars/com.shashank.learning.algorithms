@@ -3,7 +3,6 @@ package com.shashank.learning.algorithms.linkedlist.singly;
 import com.google.common.base.Preconditions;
 import com.shashank.learning.algorithms.linkedlist.api.ListNode;
 import com.shashank.learning.algorithms.linkedlist.api.ListNodeOperations;
-import com.shashank.learning.algorithms.linkedlist.utils.ListNodeUtils;
 
 public class SinglyListNodeOperations extends ListNodeOperations
 {
@@ -35,7 +34,7 @@ public class SinglyListNodeOperations extends ListNodeOperations
 
     public ListNode insertAtPosition(ListNode headNode, ListNode nodeToInsert, int position)
     {
-        ListNodeUtils.initialValidation(headNode, nodeToInsert, position);
+        initialValidation(headNode, nodeToInsert, position);
         if (headNode == null)
         {
             return nodeToInsert;

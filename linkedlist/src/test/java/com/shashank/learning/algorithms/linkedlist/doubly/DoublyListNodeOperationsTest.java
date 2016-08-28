@@ -1,7 +1,6 @@
 package com.shashank.learning.algorithms.linkedlist.doubly;
 
 import com.shashank.learning.algorithms.linkedlist.api.ListNode;
-import com.shashank.learning.algorithms.linkedlist.api.ListNodeOperations;
 import com.shashank.learning.algorithms.linkedlist.api.TestDataCreator;
 import org.junit.Assert;
 import org.junit.Test;
@@ -47,7 +46,7 @@ public class DoublyListNodeOperationsTest
         Long expectedResult = nodeToInsert.getData();
 
         ListNode headNode = myDoublyNodeOperationsService.insertAtPosition(fiveNodes, nodeToInsert, 5);
-        Long actualResult = ListNodeOperations.getNode(headNode, 5).getData();
+        Long actualResult = myDoublyNodeOperationsService.getNode(headNode, 5).getData();
 
         Assert.assertEquals(expectedResult, actualResult);
     }
@@ -61,7 +60,7 @@ public class DoublyListNodeOperationsTest
         Long expectedResult = nodeToInsert.getData();
 
         ListNode headNode = myDoublyNodeOperationsService.insertInLast(fiveNodes, nodeToInsert);
-        Long actualResult = ListNodeOperations.getNode(headNode, 5).getData();
+        Long actualResult = myDoublyNodeOperationsService.getNode(headNode, 5).getData();
 
         Assert.assertEquals(expectedResult, actualResult);
     }
@@ -75,7 +74,7 @@ public class DoublyListNodeOperationsTest
         Long expectedResult = nodeToInsert.getData();
 
         ListNode headNode = myDoublyNodeOperationsService.insertAtPosition(fiveNodes, nodeToInsert, 3);
-        Long actualResult = ListNodeOperations.getNode(headNode, 2).getData();
+        Long actualResult = myDoublyNodeOperationsService.getNode(headNode, 2).getData();
 
         Assert.assertEquals(expectedResult, actualResult);
     }
@@ -111,10 +110,10 @@ public class DoublyListNodeOperationsTest
     {
         ListNode fiveNodes = TestDataCreator.createDoublyListNode(5);
 
-        Long expectedResult = ListNodeOperations.getNode(fiveNodes, 3).getData();
+        Long expectedResult = myDoublyNodeOperationsService.getNode(fiveNodes, 3).getData();
 
         ListNode headNode = myDoublyNodeOperationsService.deleteOnPosition(fiveNodes, 5);
-        Long actualResult = ListNodeOperations.getNode(headNode, 3).getData();
+        Long actualResult = myDoublyNodeOperationsService.getNode(headNode, 3).getData();
 
         Assert.assertEquals(expectedResult, actualResult);
     }
@@ -124,10 +123,10 @@ public class DoublyListNodeOperationsTest
     {
         ListNode fiveNodes = TestDataCreator.createDoublyListNode(5);
 
-        Long expectedResult = ListNodeOperations.getNode(fiveNodes, 3).getData();
+        Long expectedResult = myDoublyNodeOperationsService.getNode(fiveNodes, 3).getData();
 
         ListNode headNode = myDoublyNodeOperationsService.deleteEndNode(fiveNodes);
-        Long actualResult = ListNodeOperations.getNode(headNode, 3).getData();
+        Long actualResult = myDoublyNodeOperationsService.getNode(headNode, 3).getData();
 
         Assert.assertEquals(expectedResult, actualResult);
     }
@@ -137,10 +136,10 @@ public class DoublyListNodeOperationsTest
     {
         ListNode fiveNodes = TestDataCreator.createDoublyListNode(5);
 
-        Long expectedResult = ListNodeOperations.getNode(fiveNodes, 3).getData();
+        Long expectedResult = myDoublyNodeOperationsService.getNode(fiveNodes, 3).getData();
 
         ListNode headNode = myDoublyNodeOperationsService.deleteOnPosition(fiveNodes, 3);
-        Long actualResult = ListNodeOperations.getNode(headNode, 2).getData();
+        Long actualResult = myDoublyNodeOperationsService.getNode(headNode, 2).getData();
 
         Assert.assertEquals(expectedResult, actualResult);
     }

@@ -1,5 +1,6 @@
 package com.shashank.learning.algorithms.linkedlist.api;
 
+import com.shashank.learning.algorithms.linkedlist.circular.CircularListNode;
 import com.shashank.learning.algorithms.linkedlist.doubly.DoublyListNode;
 import com.shashank.learning.algorithms.linkedlist.singly.SinglyListNode;
 
@@ -41,9 +42,27 @@ public class TestDataCreator
             newNode.setPrevious(currentNode);
             newNode.setData(getUnixEpochTime());
 
-            currentNode=currentNode.getNext();
+            currentNode = currentNode.getNext();
         }
-        return  headNode;
+        return headNode;
+    }
+
+    public static CircularListNode createCircularListNode(int numberOfNodes)
+    {
+        long currentUnixEpochTime = getUnixEpochTime();
+        ListNode headNode = new CircularListNode();
+        headNode.setData(currentUnixEpochTime);
+
+        ListNode currentNode = headNode;
+        for (int i = 1; i < numberOfNodes; i++)
+        {
+            ListNode newNode = new CircularListNode();
+            newNode.setData(getUnixEpochTime());
+            currentNode.setNext(newNode);
+            currentNode = currentNode.getNext();
+        }
+        currentNode.setNext(headNode);
+        return (CircularListNode) headNode;
     }
 
     public static long getUnixEpochTime()

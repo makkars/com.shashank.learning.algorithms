@@ -4,21 +4,25 @@ import com.google.common.base.Preconditions;
 
 public abstract class ListNodeOperations
 {
-    public static int size(ListNode headNode)
+    public void initialValidation(ListNode headNode, ListNode nodeToInsert, int position)
     {
-        int length = 0;
-        if (headNode == null)
-        {
-            return length;
-        }
+        Preconditions.checkArgument(!(nodeToInsert != null && headNode != null), "Input headNode/nodeToInsert can't be null");
+        int size = size(headNode);
+        Preconditions.checkArgument(!(position < 1 || position > size + 1), "Position Argument should be in between 1 to " + (size + 1));
+    }
 
+    public int size(ListNode headNode)
+    {
+        Preconditions.checkArgument(headNode != null, "HeadNode can not be null");
+
+        int size = 0;
         ListNode currentNode = headNode;
         while (currentNode != null)
         {
-            length++;
+            size++;
             currentNode = currentNode.getNext();
         }
-        return length;
+        return size;
     }
 
     /**
@@ -29,15 +33,15 @@ public abstract class ListNodeOperations
      * @throws IllegalArgumentException <br> 1.) If headNode is null
      *                                  <br> 2.) If index is valid
      */
-    public static ListNode getNode(ListNode headNode, int index)
+    public ListNode getNode(ListNode headNode, int index)
     {
         Preconditions.checkArgument(headNode != null, "HeadNode can not be null");
 
         ListNode currentNode = headNode;
-        int size = 0;
+        int count = 0;
         while (currentNode != null)
         {
-            if (index == size)
+            if (index == count)
             {
                 break;
             }
@@ -45,10 +49,10 @@ public abstract class ListNodeOperations
             {
                 currentNode = currentNode.getNext();
             }
-            size++;
+            count++;
         }
 
-        Preconditions.checkArgument(currentNode != null, "Index should be less then " + size);
+        Preconditions.checkArgument(currentNode != null, "Index should be <= " + count);
         return currentNode;
     }
 
