@@ -33,15 +33,21 @@ public class CircularListNodeOperations extends ListNodeOperations
         {
             if (count == index)
             {
-                break;
+                return currentNode;
             }
             currentNode = currentNode.getNext();
             ++count;
         }
 
-        // When currentNode.getNext() != headNode , it meant you have found what you are looking.
-        // If they are equal, it means you have index which is out of size
-        Preconditions.checkArgument(currentNode.getNext() != headNode, "Index should be <= " + count);
+        /*
+        When currentNode.getNext() != headNode , it meant you have found what you are looking.
+        If they are equal, it means you have index which is out of size
+        This condition is to true when while loop completes without breaking.
+        */
+        if (currentNode.getNext() == headNode && index > count)
+        {
+            throw new IllegalArgumentException("Index should be <= " + count);
+        }
         return currentNode;
     }
 
@@ -55,21 +61,72 @@ public class CircularListNodeOperations extends ListNodeOperations
 
     public ListNode insertOnHead(ListNode headNode, ListNode nodeToInsert)
     {
-        return null;
+        Preconditions.checkArgument((headNode != null && nodeToInsert != null), "Input arguments can't be null");
+        ListNode currentNode = headNode;
+
+        while (currentNode.getNext() != headNode)
+        {
+            currentNode = currentNode.getNext();
+        }
+
+        currentNode.setNext(nodeToInsert);
+        nodeToInsert.setNext(headNode);
+
+        return nodeToInsert;
     }
 
     public ListNode insertInLast(ListNode headNode, ListNode nodeToInsert)
     {
-        return null;
+        Preconditions.checkArgument((headNode != null && nodeToInsert != null), "Input arguments can't be null");
+        ListNode currentNode = headNode;
+
+        while (currentNode.getNext() != headNode)
+        {
+            currentNode = currentNode.getNext();
+        }
+
+        currentNode.setNext(nodeToInsert);
+        nodeToInsert.setNext(headNode);
+
+        return headNode;
     }
 
     public ListNode deleteHeadNode(ListNode headNode)
     {
-        return null;
+        Preconditions.checkArgument(headNode != null, "HeadNode can not be null");
+        ListNode previousNode = headNode;
+
+        while (previousNode.getNext() != headNode)
+        {
+            previousNode = previousNode.getNext();
+        }
+
+        ListNode currentHeadNode = previousNode.getNext();
+        ListNode newHeadNode = currentHeadNode.getNext();
+
+        previousNode.setNext(newHeadNode);
+
+        currentHeadNode.setNext(null);
+        currentHeadNode = null;
+        return newHeadNode;
     }
 
     public ListNode deleteEndNode(ListNode headNode)
     {
-        return null;
+        Preconditions.checkArgument(headNode != null, "HeadNode can not be null");
+        ListNode previousNode = headNode;
+        ListNode currentNode = headNode.getNext();
+
+        while (currentNode.getNext() != headNode)
+        {
+            previousNode = previousNode.getNext();
+            currentNode = currentNode.getNext();
+        }
+
+        previousNode.setNext(currentNode.getNext());
+        currentNode.setNext(null);
+        currentNode = null;
+
+        return headNode;
     }
 }
