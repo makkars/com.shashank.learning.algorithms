@@ -54,9 +54,9 @@ public class CircularListNodeOperations extends ListNodeOperations
     @Override
     public void initialValidation(ListNode headNode, ListNode nodeToInsert, int position)
     {
-        Preconditions.checkArgument(!(nodeToInsert != null && headNode != null), "Input headNode/nodeToInsert can't be null");
+        Preconditions.checkArgument(nodeToInsert != null && headNode != null, "Input headNode/nodeToInsert can't be null");
         int size = size(headNode);
-        Preconditions.checkArgument(!(position < 1 || position > size + 1), "Position Argument should be in between 1 to " + (size + 1));
+        Preconditions.checkArgument(!(position < 1 || position > size + 1), "Position Argument should be in between 1 to " + (size));
     }
 
     public ListNode insertOnHead(ListNode headNode, ListNode nodeToInsert)
@@ -127,6 +127,40 @@ public class CircularListNodeOperations extends ListNodeOperations
         currentNode.setNext(null);
         currentNode = null;
 
+        return headNode;
+    }
+
+    public ListNode insertOnPosition(ListNode headNode, ListNode nodeToInsert, int position)
+    {
+        initialValidation(headNode, nodeToInsert, position);
+
+        ListNode previousNode = headNode;
+        ListNode currentNode = previousNode.getNext();
+        int count = 1;
+
+        if (position == 1)
+        {
+            return insertOnHead(headNode, nodeToInsert);
+        } else
+        {
+
+            while (count < position - 1)
+            {
+                previousNode = currentNode;
+                currentNode = currentNode.getNext();
+                count++;
+            }
+
+        }
+        if (currentNode.getNext() == headNode && position == ++count)
+        {
+            nodeToInsert.setNext(currentNode.getNext());
+            currentNode.setNext(nodeToInsert);
+            return headNode;
+        }
+
+        nodeToInsert.setNext(currentNode);
+        previousNode.setNext(nodeToInsert);
         return headNode;
     }
 }

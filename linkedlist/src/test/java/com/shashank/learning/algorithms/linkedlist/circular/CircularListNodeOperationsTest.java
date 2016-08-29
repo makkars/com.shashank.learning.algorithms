@@ -120,4 +120,46 @@ public class CircularListNodeOperationsTest
         // Once implement null check will be toggled
         Assert.assertTrue(newHeadNode != null);
     }
+
+    @Test
+    public void shouldInsertNodeInMiddlePosition()
+    {
+        ListNode headNode = TestDataCreator.createCircularListNode(FIVE);
+        ListNode nodeToInsert = TestDataCreator.createCircularListNode(ONE);
+
+        Long expectedData = headNode.getNext().getData();
+        ListNode newHeadNode = myCircularListNodeOperations.insertOnPosition(headNode, nodeToInsert, 2);
+
+        Long actualData = myCircularListNodeOperations.getNode(newHeadNode, 2).getData();
+
+        Assert.assertEquals(expectedData, actualData);
+    }
+
+    @Test
+    public void shouldInsertNodeOnHeadPosition()
+    {
+        ListNode headNode = TestDataCreator.createCircularListNode(FIVE);
+        ListNode nodeToInsert = TestDataCreator.createCircularListNode(ONE);
+
+        Long expectedData = headNode.getData();
+        ListNode newHeadNode = myCircularListNodeOperations.insertOnPosition(headNode, nodeToInsert, 1);
+
+        Long actualData = myCircularListNodeOperations.getNode(newHeadNode, 1).getData();
+
+        Assert.assertEquals(expectedData, actualData);
+    }
+
+    @Test
+    public void shouldInsertNodeOnEndPosition()
+    {
+        ListNode headNode = TestDataCreator.createCircularListNode(FIVE);
+        ListNode nodeToInsert = TestDataCreator.createCircularListNode(ONE);
+
+        Long expectedData = nodeToInsert.getData();
+        ListNode newHeadNode = myCircularListNodeOperations.insertOnPosition(headNode, nodeToInsert, 5);
+
+        Long actualData = myCircularListNodeOperations.getNode(newHeadNode, 4).getNext().getData();
+
+        Assert.assertEquals(expectedData, actualData);
+    }
 }
