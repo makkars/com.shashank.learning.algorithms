@@ -27,6 +27,37 @@ public abstract class ListNodeOperations
 
     /**
      * @param headNode First Node of Singly Linked List
+     * @param position    API consider first element is at 1 position
+     * @return @{@link ListNode}  Node at index value
+     *
+     * @throws IllegalArgumentException <br> 1.) If headNode is null
+     *                                  <br> 2.) If index is valid
+     */
+    public ListNode getNodeByPosition(ListNode headNode, int position)
+    {
+        Preconditions.checkArgument(headNode != null, "HeadNode can not be null");
+
+        ListNode currentNode = headNode;
+        int count = 1;
+        while (currentNode != null)
+        {
+            if (position == count)
+            {
+                break;
+            }
+            else
+            {
+                currentNode = currentNode.getNext();
+            }
+            count++;
+        }
+
+        Preconditions.checkArgument(currentNode != null, "Index should be <= " + count);
+        return currentNode;
+    }
+
+    /**
+     * @param headNode First Node of Singly Linked List
      * @param index    API consider first element is at 0 index
      * @return @{@link ListNode}  Node at index value
      *
