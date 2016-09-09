@@ -65,6 +65,46 @@ public class TestDataCreator
         return (CircularListNode) headNode;
     }
 
+    private static ListNode createCircularListNodeFromSinglyListNode(ListNode headNode, int numberOfNodes)
+    {
+        ListNode currentNode = headNode;
+        for (int i = 1; i < numberOfNodes; i++)
+        {
+            ListNode newNode = new SinglyListNode();
+            newNode.setData(getUnixEpochTime());
+            currentNode.setNext(newNode);
+            currentNode = currentNode.getNext();
+        }
+        currentNode.setNext(headNode);
+        return headNode;
+    }
+
+    public static ListNode createCircularLoopedListNode(int numberOfNodes, int circularListHeadNodePosition)
+    {
+        long currentUnixEpochTime = getUnixEpochTime();
+        ListNode headNode = new SinglyListNode();
+        headNode.setData(currentUnixEpochTime);
+
+        ListNode currentNode = headNode;
+
+        int i = 1;
+        for (; i < numberOfNodes; i++)
+        {
+            if (i == circularListHeadNodePosition)
+            {
+                break;
+            }
+            ListNode newNode = new SinglyListNode();
+            newNode.setData(getUnixEpochTime());
+            currentNode.setNext(newNode);
+            currentNode = currentNode.getNext();
+        }
+
+        createCircularListNodeFromSinglyListNode(currentNode, (numberOfNodes - i));
+
+        return headNode;
+    }
+
     public static long getUnixEpochTime()
     {
         long now = System.currentTimeMillis();

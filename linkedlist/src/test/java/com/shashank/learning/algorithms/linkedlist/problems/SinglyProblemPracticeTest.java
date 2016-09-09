@@ -1,8 +1,8 @@
-package com.shashank.learning.algorithms.linkedlist.singly;
+package com.shashank.learning.algorithms.linkedlist.problems;
 
 import com.shashank.learning.algorithms.linkedlist.api.ListNode;
 import com.shashank.learning.algorithms.linkedlist.api.TestDataCreator;
-import com.shashank.learning.algorithms.linkedlist.problems.SinglyProblemPractice;
+import com.shashank.learning.algorithms.linkedlist.singly.SinglyListNodeOperations;
 import org.junit.Assert;
 import org.junit.Test;
 
