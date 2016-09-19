@@ -11,7 +11,7 @@ public class ListEndCycleOrNullTest
     private final SinglyListNodeOperations mySinglyListNodeOperations = new SinglyListNodeOperations();
 
     @Test
-    public void getHeadNodeOfCircularLoopList_shouldRetureANode()
+    public void getHeadNodeOfCircularLoopList_shouldReturnANode()
     {
         int nodes = 10;
         int circularNodeLoopPosition = 4;
@@ -32,10 +32,8 @@ public class ListEndCycleOrNullTest
         int circularNodeLoopPosition = 4;
         ListNode headNode = TestDataCreator.createCircularLoopedListNode(nodes, circularNodeLoopPosition);
 
-        boolean expectedResult = true;
-
         boolean actualResult = ListEndCycleOrNull.isListEndCyclicOrNull(headNode);
-        Assert.assertEquals(expectedResult, actualResult);
+        Assert.assertEquals(true, actualResult);
     }
 
     @Test
@@ -45,9 +43,7 @@ public class ListEndCycleOrNullTest
         int nodes = 10;
         ListNode headNode = TestDataCreator.createSinglyListNode(nodes);
 
-        boolean expectedResult = false;
-
         boolean actualResult = ListEndCycleOrNull.isListEndCyclicOrNull(headNode);
-        Assert.assertEquals(expectedResult, actualResult);
+        Assert.assertEquals(false, actualResult);
     }
 }

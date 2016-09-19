@@ -72,7 +72,8 @@ public class CircularListNodeOperationsTest
 
         Long expectedResult = nodeToInsert.getData();
 
-        ListNode newHeadNode = myCircularListNodeOperations.insertInLast(headNode, nodeToInsert);
+        ListNode newHeadNode;
+        newHeadNode = myCircularListNodeOperations.insertInLast(headNode, nodeToInsert);
 
         ListNode actualHeadNode = myCircularListNodeOperations.getNode(newHeadNode, 0);
         Long actualResultSecondCheck = myCircularListNodeOperations.getNode(newHeadNode, FIVE).getData();
