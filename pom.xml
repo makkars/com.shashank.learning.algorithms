@@ -11,6 +11,7 @@
     <modules>
         <module>compile</module>
         <module>linkedlist</module>
+        <module>binarytree</module>
     </modules>
 
     <dependencies>
